@@ -1,0 +1,104 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block titulo %}TPE 4 - Grupo 11{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container-fluid px-3 px-md-4">
+        <div
+          class="site-header__inner d-flex align-items-center justify-content-between flex-wrap"
+        >
+          <a class="site-brand" href="{% url 'home' %}"
+            >Sitio de Oferta de Cursos</a
+          >
+
+          <nav aria-label="Navegación principal">
+            <div class="site-nav d-flex align-items-center">
+              <a
+                class="site-nav__link {% if request.path == '/' %}active{% endif %}"
+                href="{% url 'home' %}"
+              >
+                <span class="site-nav__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 3.1 2.5 11.2v1.5h2V21h6.2v-5.5h2.6V21h6.2v-8.3h2v-1.5L12 3.1Zm0 2.6 7.2 6.1h-1.1V19h-3.8v-5.5H9.7V19H5.9v-7.2H4.8L12 5.7Z"
+                    />
+                  </svg>
+                </span>
+                <span>Home</span>
+              </a>
+
+              <a
+                class="site-nav__link {% if request.resolver_match.app_name == 'aplicaciones.docente' %}active{% endif %}"
+                href="{% url 'docentes:listar' %}"
+              >
+                <span class="site-nav__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 11.2a4.1 4.1 0 1 0 0-8.2 4.1 4.1 0 0 0 0 8.2Zm0 2.2c-4.1 0-7.5 2.8-7.5 6.3V21h15v-1.3c0-3.5-3.4-6.3-7.5-6.3Zm6.9-4.6V4.2h-1.8v4.6H12v1.8h5.1v4.5h1.8v-4.5H24V8.8h-5.1Z"
+                    />
+                  </svg>
+                </span>
+                <span>Docentes</span>
+              </a>
+
+              <a
+                class="site-nav__link {% if request.resolver_match.app_name == 'aplicaciones.curso' %}active{% endif %}"
+                href="{% url 'materias:listar' %}"
+              >
+                <span class="site-nav__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M3 4.5A1.5 1.5 0 0 1 4.5 3h6.8a3.2 3.2 0 0 1 2.2.9l.5.5.5-.5a3.2 3.2 0 0 1 2.2-.9h2.8A1.5 1.5 0 0 1 21 4.5v13A1.5 1.5 0 0 1 19.5 19h-2.8a1.4 1.4 0 0 0-1 .4l-.7.7a1.7 1.7 0 0 1-2.4 0l-.7-.7a1.4 1.4 0 0 0-1-.4H4.5A1.5 1.5 0 0 1 3 17.5v-13Zm1.8 1.2V16.8h5a3.2 3.2 0 0 1 2.2.9l.4.4.4-.4a3.2 3.2 0 0 1 2.2-.9h2.2V5.7h-2.2a1.4 1.4 0 0 0-1 .4l-.7.7a1.7 1.7 0 0 1-2.4 0l-.7-.7a1.4 1.4 0 0 0-1-.4H4.8Zm1.2 2.1h5.8v1.5H6v-1.5Zm0 3.1h5.8v1.5H6v-1.5Zm0 3.1h4.4v1.5H6v-1.5Z"
+                    />
+                  </svg>
+                </span>
+                <span>Cursos</span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="container-fluid px-4 py-4">
+      {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container-fluid px-3 px-md-4">
+        <div
+          class="site-footer__inner d-flex align-items-center justify-content-between flex-wrap py-3"
+        >
+          <div class="site-footer__text">
+            © Derechos reservados por Grupo # 11 - Desarrollo de Aplicaciones
+            Web
+          </div>
+          <div class="site-footer__text">
+            Desarrollado para
+            <a
+              class="site-footer__link"
+              href="https://www.unemi.edu.ec"
+              target="_blank"
+              rel="noopener noreferrer"
+              >UNEMI</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

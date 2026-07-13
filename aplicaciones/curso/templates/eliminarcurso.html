@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block contenido %}
+<div
+  class="modal fade"
+  id="confirmarEliminarCurso"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmarEliminarCursoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmarEliminarCursoLabel">
+          Confirmar eliminación
+        </h5>
+      </div>
+      <div class="modal-body">
+        <p class="mb-0">
+          ¿Seguro que deseas eliminar el curso
+          <strong>{{ curso.nombre }}</strong>?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a href="{% url 'materias:listar' %}" class="btn btn-secondary"
+          >Cancelar</a
+        >
+        <form method="post" class="m-0">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $("#confirmarEliminarCurso").modal({
+      backdrop: "static",
+      keyboard: false,
+      show: true,
+    });
+
+    $("#confirmarEliminarCurso").on("hidden.bs.modal", function () {
+      window.location.href = "{% url 'materias:listar' %}";
+    });
+  });
+</script>
+{% endblock %}

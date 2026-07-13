@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %} {% block contenido %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+<h1 class="seccion-titulo mb-4">Nuestros Estudiantes</h1>
+<div class="container-fluid px-0">
+  <div class="row estudiantes-fila mx-0">
+    {% for estudiante in estudiantes %}
+    <div class="col estudiante-col px-2 mb-4">
+      <div class="card estudiante-card">
+        <img
+          src="{{ estudiante.imagen }}"
+          class="card-img-top estudiante-img"
+          alt="{{ estudiante.nombre }}"
+        />
+        <div class="card-body">
+          <h3 class="card-title">{{ estudiante.nombre }}</h3>
+          <p class="card-text">
+            <strong>Nivel:</strong> {{ estudiante.nivel }}
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card card-info p-3" style="height: 230px">
+      <div class="d-flex align-items-center mb-2">
+        <div
+          class="card-icono rounded-circle d-flex align-items-center justify-content-center me-3"
+          style="width: 50px; height: 50px"
+        >
+          👤
+        </div>
+        <h4 class="mb-0">Docentes</h4>
+      </div>
+      <p class="text-danger">
+        Ubicar una descripcion general sobre docentes y su experiencia.
+      </p>
+      <a
+        href="{% url 'docentes:listar' %}"
+        class="btn btn-principal align-self-end mt-auto"
+        >Ver docentes</a
+      >
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card card-info h-100 p-3">
+      <div class="d-flex align-items-center mb-2">
+        <div
+          class="card-icono rounded-circle d-flex align-items-center justify-content-center me-3"
+          style="width: 50px; height: 50px"
+        >
+          📖
+        </div>
+        <h4 class="mb-0">Cursos</h4>
+      </div>
+      <p class="text-danger">
+        Ubicar una descripcion general sobre cursos disponibles.
+      </p>
+      <a
+        href="{% url 'materias:listar' %}"
+        class="btn btn-principal align-self-end mt-auto"
+        >Ver cursos</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %}
