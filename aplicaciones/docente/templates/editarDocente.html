@@ -1,21 +1,25 @@
-{% extends 'base.html' %} {% load static %} {% block contenido %}
+{% extends 'base.html' %} {% block contenido %}
 
 <div class="container mt-5 text-center">
-  <h1>Registrar Docente</h1>
+  <h1>Editar docente</h1>
 </div>
+
 <div class="container mt-5 p-5">
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
-      <label for="nombre">Cédula:</label>
+      <label for="cedula">Cédula:</label>
       <input
         type="text"
         class="form-control"
         id="cedula"
         name="cedula"
-        required
+        placeholder="Ingrese la cédula"
+        value="{{ form.cedula.value|default_if_none:'' }}"
       />
+      {{ form.cedula.errors }}
     </div>
+
     <div class="form-group">
       <label for="nombre">Nombres:</label>
       <input
@@ -23,9 +27,12 @@
         class="form-control"
         id="nombre"
         name="nombre"
-        required
+        placeholder="Ingrese los nombres"
+        value="{{ form.nombre.value|default_if_none:'' }}"
       />
+      {{ form.nombre.errors }}
     </div>
+
     <div class="form-group">
       <label for="apellido">Apellidos:</label>
       <input
@@ -33,9 +40,12 @@
         class="form-control"
         id="apellido"
         name="apellido"
-        required
+        placeholder="Ingrese los apellidos"
+        value="{{ form.apellido.value|default_if_none:'' }}"
       />
+      {{ form.apellido.errors }}
     </div>
+
     <div class="form-group">
       <label for="correo">Correo:</label>
       <input
@@ -43,11 +53,14 @@
         class="form-control"
         id="correo"
         name="correo"
-        required
+        placeholder="Ingrese el correo"
+        value="{{ form.correo.value|default_if_none:'' }}"
       />
+      {{ form.correo.errors }}
     </div>
+
     <div class="form-group">
-      <label for="sangre">Tipo de sangre:</label>
+      <label for="tipo_sangre">Tipo de sangre:</label>
       <select class="form-control" id="tipo_sangre" name="tipo_sangre">
         <option value="">Seleccione un tipo de sangre</option>
         <option
@@ -147,7 +160,9 @@
           O-
         </option>
       </select>
+      {{ form.tipo_sangre.errors }}
     </div>
+
     <div class="form-group">
       <label for="direccion">Dirección:</label>
       <input
@@ -155,15 +170,19 @@
         class="form-control"
         id="direccion"
         name="direccion"
-        required
+        placeholder="Ingrese la dirección"
+        value="{{ form.direccion.value|default_if_none:'' }}"
       />
+      {{ form.direccion.errors }}
     </div>
+
     <div class="form-group">
       <label for="imagen">Imagen:</label>
-      <input type="file" class="form-control-file" id="imagen" name="imagen" />
+      {{ form.imagen }} {{ form.imagen.errors }}
     </div>
-    <button class="btn btn-success">Registrar</button>
-    <a href="/docentes" class="btn btn-danger">Cancelar</a>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{% url 'docentes:listar' %}" class="btn btn-danger">Cancelar</a>
   </form>
 </div>
 

@@ -1,15 +1,33 @@
 {% extends 'base.html' %} {% load static %} {% block contenido %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<!--<link rel="stylesheet" href="{% static 'css/home.css' %}" />-->
 
 <h1 class="seccion-titulo mb-4">Nuestros Estudiantes</h1>
 <div class="container-fluid px-0">
-  <div class="row estudiantes-fila mx-0">
+  <div
+    class="row mx-0"
+    style="align-items: center; justify-content: center; gap: 48px"
+  >
     {% for estudiante in estudiantes %}
-    <div class="col estudiante-col px-2 mb-4">
-      <div class="card estudiante-card">
+    <div class="col-2 mb-4">
+      <div
+        class="card"
+        style="
+          width: 300px;
+          height: 460px;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #000000;
+        "
+      >
         <img
           src="{{ estudiante.imagen }}"
-          class="card-img-top estudiante-img"
+          class="card-img-top"
+          style="
+            width: 298px;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 20px;
+          "
           alt="{{ estudiante.nombre }}"
         />
         <div class="card-body">
@@ -26,7 +44,14 @@
 
 <div class="row g-4">
   <div class="col-md-6">
-    <div class="card card-info p-3" style="height: 230px">
+    <div
+      class="card p-3"
+      style="
+        background-color: #0f172a;
+        height: 230px;
+        border: 1px solid #000000;
+      "
+    >
       <div class="d-flex align-items-center mb-2">
         <div
           class="card-icono rounded-circle d-flex align-items-center justify-content-center me-3"
@@ -34,20 +59,28 @@
         >
           👤
         </div>
-        <h4 class="mb-0">Docentes</h4>
+        <h4 class="mb-0 text-light">Docentes</h4>
       </div>
-      <p class="text-danger">
-        Ubicar una descripcion general sobre docentes y su experiencia.
+      <p class="text-info">
+        Conoce a nuestro equipo docente, formado por profesionales con
+        experiencia académica y compromiso con la formación de los estudiantes.
       </p>
       <a
         href="{% url 'docentes:listar' %}"
-        class="btn btn-principal align-self-end mt-auto"
+        class="btn btn-principal align-self-end mt-auto text-danger"
         >Ver docentes</a
       >
     </div>
   </div>
   <div class="col-md-6">
-    <div class="card card-info h-100 p-3">
+    <div
+      class="card h-100 p-3"
+      style="
+        background-color: #0f172a;
+        height: 230px;
+        border: 1px solid #000000;
+      "
+    >
       <div class="d-flex align-items-center mb-2">
         <div
           class="card-icono rounded-circle d-flex align-items-center justify-content-center me-3"
@@ -55,14 +88,15 @@
         >
           📖
         </div>
-        <h4 class="mb-0">Cursos</h4>
+        <h4 class="mb-0 text-light">Cursos</h4>
       </div>
-      <p class="text-danger">
-        Ubicar una descripcion general sobre cursos disponibles.
+      <p class="text-info">
+        Explora los cursos disponibles y descubre una oferta académica pensada
+        para fortalecer tus conocimientos y acompañar tu desarrollo profesional.
       </p>
       <a
         href="{% url 'materias:listar' %}"
-        class="btn btn-principal align-self-end mt-auto"
+        class="btn btn-principal align-self-end mt-auto text-danger"
         >Ver cursos</a
       >
     </div>

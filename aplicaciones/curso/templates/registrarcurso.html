@@ -16,6 +16,7 @@
         name="nombre"
         required
       />
+      {{ form.nombre.errors }}
     </div>
     <div class="form-group">
       <label for="creditos">Créditos:</label>
@@ -26,6 +27,7 @@
         name="creditos"
         required
       />
+      {{ form.creditos.errors }}
     </div>
     <div class="form-group">
       <label for="nivel">Nivel:</label>
@@ -41,24 +43,27 @@
         <option value="9">Nivel 9</option>
         <option value="10">Nivel 10</option>
       </select>
+      {{ form.nivel.errors }}
     </div>
     <div class="form-group">
-      <label for="horas">Horas semanales:</label>
+      <label for="horas_semanales">Horas semanales:</label>
       <input
         type="number"
         class="form-control"
-        id="horas"
-        name="horas"
+        id="horas_semanales"
+        name="horas_semanales"
         required
       />
+      {{ form.horas_semanales.errors }}
     </div>
     <div class="form-group">
       <label for="jornada">Jornada:</label>
       <select class="form-control" id="jornada" name="jornada">
-        <option value="matutina">Matutina</option>
-        <option value="vespertina">Vespertina</option>
-        <option value="nocturna">Nocturna</option>
+        <option value="MATUTINA">Matutina</option>
+        <option value="VESPERTINA">Vespertina</option>
+        <option value="NOCTURNA">Nocturna</option>
       </select>
+      {{ form.jornada.errors }}
     </div>
     <div class="form-group">
       <label for="imagen">Imagen:</label>
@@ -68,6 +73,7 @@
         id="imagen"
         name="imagen"
       />
+      {{ form.imagen.errors }}
     </div>
     <div class="form-group">
       <label for="docente">Docente:</label>

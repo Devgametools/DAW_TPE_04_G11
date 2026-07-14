@@ -1,69 +1,82 @@
-{% extends 'base.html' %} {% load static %} {% block contenido %}
+{% extends 'base.html' %} {% load static %} {% block extra_css %} {% endblock %}
+{% block contenido %}
 
-<h1 class="seccion-titulo mb-4">Docentes</h1>
-<div class="container-fluid px-0">
-  <div class="row docentes-fila mx-0">
-    {% for docente in docentes %} {% if forloop.counter0|divisibleby:2 %}
-    <div class="col estudiante-col px-2 mb-4">
-      <div class="card estudiante-card">
-        <div class="row no-gutters">
-          <div class="col-md-8">
-            <div class="card-body">
-              <h3 class="card-title">
-                {{ docente.nombre }} {{ docente.apellido }}
-              </h3>
-              <p class="card-text">
-                <strong>Correo:</strong> {{ docente.correo }}
-              </p>
-              <p class="card-text">
-                <strong>Tipo de Sangre:</strong> {{ docente.tipo_sangre }}
-              </p>
-              <p class="card-text">
-                <strong>Dirección:</strong> {{ docente.direccion }}
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <img
-              src="{{ docente.imagen.url }}"
-              class="card-img-top estudiante-img"
-              alt="{{ docente.nombre }} {{ docente.apellido }}"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    {% else %}
-    <div class="col estudiante-col px-2 mb-4">
-      <div class="card estudiante-card">
+<div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+  <h1 class="seccion-titulo mb-0">Docentes</h1>
+  <a href="{% url 'docentes:crear' %}" class="btn btn-success">
+    Registrar docente
+  </a>
+</div>
+<div
+  class="container-fluid px-0"
+  style="align-items: center; justify-content: center"
+>
+  <div class="row mx-0">
+    {% for docente in docentes %}
+    <div class="col-6 mb-4">
+      <div
+        class="card text-light"
+        style="
+          width: 800px;
+          height: 400px;
+          display: flex;
+          flex-direction: row;
+          margin: 50px auto;
+          border: 1px solid #ffffff;
+          background-color: #0f172a;
+        "
+      >
         <div class="row no-gutters">
           <div class="col-md-4">
             <img
               src="{{ docente.imagen.url }}"
-              class="card-img-top estudiante-img"
+              class="card-img-top"
+              style="
+                width: 300px;
+                height: 398px;
+                object-fit: cover;
+                margin-right: 350px;
+              "
               alt="{{ docente.nombre }} {{ docente.apellido }}"
             />
           </div>
           <div class="col-md-8">
-            <div class="card-body">
-              <h3 class="card-title">
+            <div
+              class="card-body text-light"
+              style="margin-left: 75px; margin-top: 20px"
+            >
+              <h3 class="card-title p-2">
                 {{ docente.nombre }} {{ docente.apellido }}
               </h3>
-              <p class="card-text">
+              <p class="card-text p-2">
                 <strong>Correo:</strong> {{ docente.correo }}
               </p>
-              <p class="card-text">
+              <p class="card-text p-2">
                 <strong>Tipo de Sangre:</strong> {{ docente.tipo_sangre }}
               </p>
-              <p class="card-text">
+              <p class="card-text p-2">
                 <strong>Dirección:</strong> {{ docente.direccion }}
               </p>
             </div>
           </div>
         </div>
+        <div style="position: absolute; right: 20px; bottom: 20px">
+          <a
+            href="{% url 'docentes:editar_docente' docente.pk %}"
+            class="btn btn-warning"
+          >
+            Editar
+          </a>
+          <a
+            href="{% url 'docentes:eliminar_docente' docente.pk %}"
+            class="btn btn-danger"
+          >
+            Eliminar
+          </a>
+        </div>
       </div>
     </div>
-    {% endif %} {% endfor %}
+    {% endfor %}
   </div>
 </div>
 

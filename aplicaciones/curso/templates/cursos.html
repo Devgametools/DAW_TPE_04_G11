@@ -1,34 +1,64 @@
-{% extends 'base.html' %} {% block contenido %}
+{% extends 'base.html' %} {% load static %} {% block extra_css %} {% endblock %}
+{% block contenido %}
 
-<div class="container mt-5 text-center">
-  <h1>Cursos</h1>
+<div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+  <h1 class="seccion-titulo mb-0">Cursos</h1>
+  <a href="{% url 'materias:crear' %}" class="btn btn-success">
+    Registrar curso
+  </a>
 </div>
-<div class="container mt-5 p-5">
-  {% for curso in cursos %}
-  <div class="card" style="width: 400px">
-    <img class="card-img-top" src="{{ curso.imagen.url }}" alt="Card image" />
-    <div class="card-body">
-      <h4 class="card-title">{{ curso.nombre }}</h4>
-      <p class="card-text"><strong>Nivel:</strong> {{ curso.nivel }}</p>
-      <p class="card-text">
-        <strong>Docente:</strong> {{ curso.docente.nombre }} {{
-        curso.docente.apellido }}
-      </p>
-      <div class="d-flex justify-content-between">
-        <a
-          href="{% url 'materias:editar_curso' curso.pk %}"
-          class="btn btn-warning"
-          >Editar</a
-        >
-        <a
-          href="{% url 'materias:eliminar_curso' curso.pk %}"
-          class="btn btn-danger"
-          >Eliminar</a
-        >
+
+<div
+  class="container-fluid px-0"
+  style="align-items: center; justify-content: center"
+>
+  <div class="row mx-0">
+    {% for curso in cursos %}
+    <div class="col-3 mb-4">
+      <div
+        class="card text-light"
+        style="
+          width: 400px;
+          height: 500px;
+          display: flex;
+          flex-direction: column;
+          margin: 50px auto;
+          border: 1px solid #000000;
+          background-color: #0f172a;
+        "
+      >
+        <img
+          class="card-img-top"
+          style="width: 398px; height: 300px; object-fit: cover"
+          src="{{ curso.imagen.url }}"
+          alt="Card image"
+        />
+        <div class="card-body">
+          <h4 class="card-title">{{ curso.nombre }}</h4>
+          <p class="card-text"><strong>Nivel:</strong> {{ curso.nivel }}</p>
+          <p class="card-text">
+            <strong>Docente:</strong>
+            {{ curso.docente.nombre }} {{ curso.docente.apellido }}
+          </p>
+          <div class="d-flex justify-content-between">
+            <a
+              href="{% url 'materias:editar_curso' curso.pk %}"
+              class="btn btn-warning"
+            >
+              Editar
+            </a>
+            <a
+              href="{% url 'materias:eliminar_curso' curso.pk %}"
+              class="btn btn-danger"
+            >
+              Eliminar
+            </a>
+          </div>
+        </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 
 {% endblock %}
